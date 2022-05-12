@@ -1,0 +1,20 @@
+<nav>
+  <div class="nav-bar">
+    <div class="title">
+      <h1>Tweeter</h1>
+    </div>
+    &nbsp
+    <a href="/tweets" class="home"><i class="fa fa-home"></i>&nbsp Home</a>
+    &nbsp
+    <a href="/account/<%=user.id%>" class="profile"
+      ><i class="fa fa-user"></i>&nbsp Profile</a
+    >
+    &nbsp
+    <a href="/logout" class="logout"> Log out</a>
+  </div>
+  <div style="display: inline" class="navbar-menu navbar-end">
+    <% if (user.username) { %>
+    <h2 class="navbar-item">user: <%= user.username %></h2>
+    <% } %>
+  </div>
+</nav>

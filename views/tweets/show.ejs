@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/sub.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body class="index">
+    <div class="column1"><%- include('../partials/nav.ejs')%></div>
+    <main>
+      <div class="tweet-body">
+        <h3>
+          <a href="/account/<%= oneTweet.username %>" class="links"
+            ><%= oneTweet.user %></a
+          >
+        </h3>
+        <p><%= oneTweet.content %></p>
+        <img class="tweet-image" src="<%= oneTweet.image %>" alt="" />
+        <p><%= oneTweet.createdAt %></p>
+        <div class="like-box">
+          <form action="/tweets/likes?_method=PUT" method="POST">
+            <input type="hidden" name="_id" value="<%= oneTweet._id %>" />
+            <input type="hidden" value="<%= user.id%>" name="likes" />
+            <input type="submit" value="Like" />
+          </form>
+          <p class="like-counter">Likes : <%= oneTweet.likes.length %></p>
+        </div>
+      </div>
+      <div class="reply-container">
+        <form method="POST" action="/comments">
+          <input
+            type="text"
+            name="comment"
+            class="reply"
+            placeholder="Tweet something here"
+          />
+          <input type="hidden" value="<%=oneTweet._id%>" name="tweet" />
+          <input type="hidden" value="<%= user.id %>" name="username" />
+          <input type="hidden" value="<%= user.username %>" name="user" />
+          <input type="submit" value="Reply" class="reply-btn" />
+        </form>
+      </div>
+      <div class="comment-container">
+        <% for(let i = 0; i < comments.length; i++) {%> <% const comment =
+        comments[i] %>
+        <div class="comment-body">
+          <h3><%= comment.user%></h3>
+          &nbsp
+          <p><%=comment.comment%></p>
+          &nbsp
+          <p><%= comment.createdAt %></p>
+        </div>
+        <% if (comment.user === user.username) {%>
+        <form method="POST" action="/comments/<%=comment._id%>?_method=DELETE">
+          <input type="submit" value="Delete" />
+        </form>
+        <%}%> <%}%>
+      </div>
+    </main>
+    <div class="column2"></div>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/sub.css" />
+    <script src="/scripts/app.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Tweeter</title>
+  </head>
+  <body class="index">
+    <div class="column1"><%- include('../partials/nav.ejs')%></div>
+    <main>
+      <div class="new-tweet">
+        <form method="POST" action="/tweets">
+          <input
+            id="content"
+            name="content"
+            type="text"
+            placeholder="Tweet Something"
+            class="tweet-something-box"
+          />
+          <div>
+            <label for="image"> Tweet Image </label>
+            <input id="image" name="image" type="text" placeholder="Image URL" class="tweet-something-image-box" />
+          </div>
+          <input type="submit" value="Tweet" class="tweet-btn" />
+          <input type="hidden" value="<%= user.id %>" name="username" />
+          <input type="hidden" value="<%= user.username %>" name="user" />
+        </form>
+      </div>
+
+      <% for(let idx = 0; idx < tweets.length; idx++){%> <% const tweet =
+      tweets[idx]%>
+
+        <a href="/tweets/<%= tweets[idx]._id %>" class="links">
+          <div class="tweet-body">
+            <h3><%= tweet.user %></h3>
+            <p><%= tweet.content%></p>
+            <img class="tweet-image" src="<%= tweet.image%>" alt="" />
+            <p><%= tweet.createdAt %></p>
+          </div>
+        </a>
+        <%}%>
+  
+    </main>
+      <div class="column2">
+        <div class="search-bar">
+          <form action="/tweets" method="GET">
+            <label for="username">
+              <input type="text" name="username" placeholder="Search here..." class="search-input"/>
+            </label>
+            <input type="submit" value="Search" name="" id="" class="search-btn"/>
+          </form>
+          <div>
+            <% for (let i = 0; i<allUsers.length; i++) { %>
+                <% if (userSearch.username === allUsers[i].username) { %> 
+                    <a href="/account/<%= allUsers[i]._id %>" class="links"><%= allUsers[i].username %></a>
+                    </a>
+                      <% } %>  
+                      <% } %>  
+                      </div>
+  </body>
+</html>
