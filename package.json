@@ -1,0 +1,31 @@
+{
+  "name": "project-two-twitter-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brendanfburke/project-two-twitter-clone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brendanfburke/project-two-twitter-clone/issues"
+  },
+  "homepage": "https://github.com/brendanfburke/project-two-twitter-clone#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.3.3",
+    "nodemon": "^2.0.16",
+    "sass": "^1.51.0"
+  }
+}
